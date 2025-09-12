@@ -2,7 +2,8 @@ package main
 
 import (
 	"crud-app/database"
-	"crud-app/handlers"
+	"crud-app/routes"
+
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -17,10 +18,8 @@ func main() {
 
 	app := fiber.New()
 
-	app.Post("/Mahasiswa", handlers.CreateUser)
-	app.Get("/Mahasiswa", handlers.GetUsers)
-	app.Put("/Mahasiswa/:id", handlers.UpdateUser)
-	app.Delete("/Mahasiswa/:id", handlers.DeleteUser)
-
+	// alumni 
+	// routes.SetupRoutes(app)
+	routes.SetupRoutes(app)
 	app.Listen(":3000")
 }

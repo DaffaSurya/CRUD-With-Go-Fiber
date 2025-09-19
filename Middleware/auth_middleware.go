@@ -24,7 +24,7 @@ func AuthMiddleware(userRepo repository.UserRepository, next http.Handler) http.
 			return []byte(os.Getenv("JWT_SECRET")), nil
 		})
 		if err != nil || !parsed.Valid {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			http.Error(w, "Token tidak sesuai", http.StatusUnauthorized)
 			return
 		}
 
@@ -33,7 +33,7 @@ func AuthMiddleware(userRepo repository.UserRepository, next http.Handler) http.
 
 		user, err := userRepo.GetByID(id)
 		if err != nil {
-			http.Error(w, "User not found", http.StatusUnauthorized)
+			http.Error(w, "User tidak ditemukan", http.StatusUnauthorized)
 			return
 		}
 

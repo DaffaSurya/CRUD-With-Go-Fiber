@@ -1,4 +1,4 @@
-package handlers
+package service
 
 import (
 	"crud-app/app/models"
@@ -6,22 +6,21 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
-
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
 
-type AuthHandler struct {
+type AuthService struct {
 	repo repository.UserRepository
 }
 
-func NewAuthHandler(r repository.UserRepository) *AuthHandler {
-	return &AuthHandler{repo: r}
+func NewAuthService(r repository.UserRepository) *AuthService {
+	return &AuthService{repo: r}
 }
 
-func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
+func (h *AuthService) Register(w http.ResponseWriter, r *http.Request) {
     var u models.User
     if err := json.NewDecoder(r.Body).Decode(&u); err != nil {
         http.Error(w, "Invalid input", http.StatusBadRequest)
@@ -59,7 +58,7 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 
 
 // Login user
-func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
+func (h *AuthService) Login(w http.ResponseWriter, r *http.Request) {
 	var req models.User
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Invalid input", http.StatusBadRequest)

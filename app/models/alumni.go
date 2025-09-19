@@ -1,8 +1,6 @@
 package models
 
-import (
-	"time"
-)
+import "time"
 
 type Alumni struct {
 	ID          int       `json:"id"`
@@ -10,10 +8,10 @@ type Alumni struct {
 	Nama        string    `json:"nama"`
 	Jurusan     string    `json:"jurusan"`
 	Angkatan    int       `json:"angkatan"`
-	Tahun_lulus int		  `json:"tahun_lulus"`
-	Email       string 	  `json:"email"`
+	Tahun_lulus int       `json:"tahun_lulus"`
+	Email       string    `json:"email"`
 	No_telp     string    `json:"no_telepon"`
-	Alamat		string	  `json:"alamat"`
+	Alamat      string    `json:"alamat"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
